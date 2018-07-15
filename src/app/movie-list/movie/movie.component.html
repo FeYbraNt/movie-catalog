@@ -1,0 +1,41 @@
+<div class="container">
+      <div class="card mt-5">
+        <div class="card-body">
+          <h2>Movie</h2>
+          <p>Remember to upload your image before save the data.</p>
+          <form #addForm="ngForm" (ngSubmit)="onMovieSubmit(addForm)">
+              <div class="form-group">
+                <input type="text" name="name" class="form-control" #name="ngModel"
+                  [(ngModel)]="movieService.selectMovie.name" placeholder="Write movie name ...">
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" name="picture" class="btn custom-file-input" accept=".png, .jpg"
+                        (change)="onImageSelected($event)" id="inputGroupFile02">
+                        <label for="inputGroupFile02" class="custom-file-label">Upload an image picture...</label>
+                    </div>
+                    <div class="input-group-append">
+                        <span class="btn input-group-text" (click)="uploadPicture()">Upload</span>
+                    </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <select name="category" id="category" class="form-control" 
+                  [(ngModel)]="movieService.selectMovie.category" #category="ngModel">
+                  <option value="#">Select a Movie Category...</option>
+                  <option *ngFor="let category of categoryList">{{ category.name }}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary" type="submit">
+                  <i class="fa fa-plus-circle"></i> Add / Update
+                </button>
+                <button class="btn btn-secondary" type="reset" (click)="resetForm(addForm)">
+                  <i class="fa fa-sync-alt"></i> Reset
+                </button>
+              </div>
+          </form>
+        </div>
+      </div>
+</div>

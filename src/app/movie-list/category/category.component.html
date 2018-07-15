@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="card mt-5">
+      <div class="card-body">
+        <h2>New Category</h2>
+        <br />
+        <form #categoryForm="ngForm" (ngSubmit)="onCategorySubmit(categoryForm)">
+            <!-- UPDATE, we will reuse the same form for add and edit  -->
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="movieService.selectCategory.$key">
+            <div class="form-group">
+              <input type="text" name="name" class="form-control" #name="ngModel"
+                [(ngModel)]="movieService.selectCategory.name" placeholder="Add category name ...">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit">
+                <i class="fa fa-plus-circle"></i> Add / Update
+              </button>
+              <button class="btn btn-secondary" type="reset" (click)="resetForm(addForm)">
+                <i class="fa fa-sync-alt"></i> Reset
+              </button>
+            </div>
+        </form>
+      </div>
+    </div>
+    <div class="card mt-5">
+      <div class="card-body">
+        <h2>List of categories</h2>
+        <br />
+        <ul class="list-group">
+          <li *ngFor="let category of categoryList" class="list-group-item d-flex justify-content-between align-items-center">
+            {{ category.name }} 
+            <div>
+                <a class="btn btn-secondary text-white" (click)="onEdit(category)"><i class="far fa-edit"></i></a>
+                <a class="btn btn-danger text-white" (click)="onDelete(category.$key)"><i class="fas fa-trash-alt"></i></a>
+            </div> 
+          </li>
+        </ul>
+      </div>
+    </div>
+</div>

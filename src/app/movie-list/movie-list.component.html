@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="jumbotron" style="min-height: 400px;">
+      <h1>List of movies</h1> 
+      <p>Made by <a href="http://rldorado.me">Rafael Lopez Dorado</a></p>
+      <button class="btn btn-primary btn-lg" role="button" (click)="showMovie = !showMovie">Add more »</button>
+      <div class="box-movie" [hidden]="!showMovie"><app-movie></app-movie></div>
+    </div>
+    <div class="row">
+      <div class="card mb-3 ml-auto mr-auto" *ngFor="let movie of movieList">
+        <h4 class="card-header text-center">{{ movie.name }}</h4>
+        <div class="card-body">
+          <img src="{{ movie.picture }}" alt="{{ movie.name }}" style="height: 200px; width: 100%; display: block;">
+          <p class="text-center"><span class="badge badge-dark">{{ movie.category }}</span></p> 
+          <p class="text-center">
+            <button class="btn btn-secondary text-white" (click)="onEdit(movie); showMovie = !showMovie;">
+              <i class="far fa-edit"></i>
+            </button>
+            <button class="btn btn-danger text-white" (click)="onDelete(movie.$key)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </p> 
+        </div>
+      </div>
+    </div>
+</div>
+
